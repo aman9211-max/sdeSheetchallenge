@@ -76,7 +76,4 @@ vector<vector<int>> solveNQueens(int n) {
         r.push_back(l);
     }
     return r;
-    
-    
-    
 }
