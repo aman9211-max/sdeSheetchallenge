@@ -10,14 +10,14 @@
         TreeNode(int x, TreeNode *left, TreeNode *right) : data(x), left(left), right(right) {}
     };
 */
-void inorder(TreeNode * root, vector<int> &ans) {
+void postorder(TreeNode * root, vector<int> &ans) {
     if(!root) {
         return;
     }
     
     
-    inorder(root->left, ans);
-    inorder(root->right, ans);
+    postorder(root->left, ans);
+    postorder(root->right, ans);
     ans.push_back(root->data);
 }
 vector<int> getPostOrderTraversal(TreeNode *root)

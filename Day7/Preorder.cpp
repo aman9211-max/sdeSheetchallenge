@@ -10,14 +10,14 @@
         TreeNode(int x, TreeNode *left, TreeNode *right) : data(x), left(left), right(right) {}
     };
 */
-void inorder(TreeNode * root, vector<int> &ans) {
+void preorder(TreeNode * root, vector<int> &ans) {
     if(!root) {
         return;
     }
     
     ans.push_back(root->data);
-    inorder(root->left, ans);
-    inorder(root->right, ans);
+    preorder(root->left, ans);
+    preorder(root->right, ans);
 }
 vector<int> getPreOrderTraversal(TreeNode *root)
 {
