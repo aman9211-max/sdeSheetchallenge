@@ -1,4 +1,3 @@
-
 // Implement class for minStack.
 #include<bits/stdc++.h>
 class minStack
