@@ -18,26 +18,65 @@
     };
 
 *************************************************************/
-LinkedListNode<int> * dfs(LinkedListNode<int> *head, map<LinkedListNode<int> *, LinkedListNode<int> *> &m) {
+
+
+#define node LinkedListNode<int>
+
+node * dfs(node * head) {
     if(!head) {
         return nullptr;
     }
-    LinkedListNode<int> * t = m[head];
-    t->next = dfs(head->next, m);
-    t->random = m[head->random];
+    node * t = head->next;
+    t->next = dfs(head->next->next);
     return t;
-    
 }
 LinkedListNode<int> *cloneRandomList(LinkedListNode<int> *head)
 {
-    map<LinkedListNode<int> *, LinkedListNode<int> *> m;
-    LinkedListNode<int> * h = head;
-    
-    while(h) {
-        LinkedListNode<int> * x = new LinkedListNode<int>(h->data);
-        m[h] = x;
-        h = h->next;
-    }
-    return dfs(head, m);
-}
+    LinkedListNode<int> *itr=head;
 
+ 
+
+       while(itr!=NULL)
+
+       {  
+
+           LinkedListNode<int> *front=itr->next;
+
+           LinkedListNode<int> *dumy=new LinkedListNode<int> (itr->data);
+
+       dumy->next=itr->next;
+
+        itr->next=dumy;
+
+        itr=front;
+
+       }
+    itr = head;
+    
+   
+    while(itr and itr->next) {
+        
+        
+        itr->next->random = itr->random;
+        itr = itr->next-> next;
+    }
+    node *h, *t;
+    h = t = nullptr;
+    itr = head;
+    while(itr) {
+        node * front = itr->next->next;
+        if(!h) {
+            h =  t = itr->next;
+            
+        }
+        else {
+            t->next = itr->next;
+            t = t->next;
+        }
+        itr->next = front;
+        itr = front;
+    }
+    return h;
+   
+   
+}
